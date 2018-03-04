@@ -59,7 +59,7 @@ class Reboot(object):
     def force_reboot(self):
         #save info in reboot.txt before rebooting.
         now = datetime.datetime.now()
-        time = "rebooting -->  month = " + str(now.month) + ", day = " + str(now.day) + ", hour = " + str(now.hour) + ", minute = " + str(now.minute)
+        time = "rebooting -->  month = " + str(now.month) + ", day = " + str(now.day) + ", hour = " + str(now.hour) + ", minute = " + str(now.minute) + "\n"
         with open("reboot.txt", "a") as f:
             f.write(time)
         time.sleep(1)
