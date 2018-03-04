@@ -9,13 +9,13 @@ from requests.exceptions import ConnectionError
 # Url for hash rate history. More info  https://etc.nanopool.org/api#api-Miner-HashrateHistory
 # Put your url address
 
-url = 'https://api.nanopool.org/v1/etc/hashrate/0x5b184fa7e6bae0a7e2a8701e826d002829644399'
+url = 'https://api.nanopool.org/v1/zec/balance_hashrate/t1fj1xQsKwiayUMhfemCNLbLoMJVV6yNL7d'
 
 
-first_check_time_after_start = 300 #sec.
-repeat = 60
+first_check_time_after_start = 600 #sec.
+repeat = 300
 repeat_after_connection_error = 15 
-min_hash_for_rebooting = 10
+min_hash_for_rebooting = 100
 max_connection_error_before_rebooting = 10
 
 class Reboot(object):
@@ -39,7 +39,9 @@ class Reboot(object):
             if "status" in json.keys():
                 status = json["status"]
             if "data" in json.keys():
-                hash_rate = json["data"]
+                data = json["data"]
+                if "hashrate" in data.keys():
+                    hash_rate = data["hashrate"]
 
             print(status)
             print(hash_rate)
