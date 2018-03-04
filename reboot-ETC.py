@@ -9,9 +9,7 @@ from requests.exceptions import ConnectionError
 # Url for hash rate history. More info  https://etc.nanopool.org/api#api-Miner-HashrateHistory
 # Put your url address
 
-url = 'https://api.nanopool.org/v1/etc/hashrate/0x5b184fa7e6bae0a7e2a8701e826d002829644399'
-
-
+etc_account = ''
 first_check_time_after_start = 300 #sec.
 repeat = 180
 repeat_after_connection_error = 15 
@@ -26,6 +24,7 @@ class Reboot(object):
         self.s = sched.scheduler(time.time, time.sleep)
         self.s.enter(first_check_time_after_start, 1, self.get_hash_rate, (self.s,))
         self.s.run()
+        print("Reboot script correctly started")
 
     def get_hash_rate(self, sc):
         print("Try To Get Data From Nanopool")
@@ -74,4 +73,8 @@ class Reboot(object):
         print("Internet connection error count == " + str(self.net_error_count))
 		
 
+url = 'https://api.nanopool.org/v1/etc/hashrate/'
+if len(etc_account) == 0:
+    etc_account = "0x5b184fa7e6bae0a7e2a8701e826d002829644399"
+url = url + etc_account
 obj = Reboot(url)

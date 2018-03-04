@@ -9,8 +9,7 @@ from requests.exceptions import ConnectionError
 # Url for hash rate history. More info  https://etc.nanopool.org/api#api-Miner-HashrateHistory
 # Put your url address
 
-url = 'https://api.nanopool.org/v1/zec/balance_hashrate/t1fj1xQsKwiayUMhfemCNLbLoMJVV6yNL7d'
-
+zec_account = ''
 
 first_check_time_after_start = 600 #sec.
 repeat = 300
@@ -26,6 +25,7 @@ class Reboot(object):
         self.s = sched.scheduler(time.time, time.sleep)
         self.s.enter(first_check_time_after_start, 1, self.get_hash_rate, (self.s,))
         self.s.run()
+        print("Reboot script correctly started")
 
     def get_hash_rate(self, sc):
         print("Try To Get Data From Nanopool")
@@ -75,5 +75,9 @@ class Reboot(object):
         self.s.enter(repeat_after_connection_error, 1, self.get_hash_rate, (sc,))
         print("Internet connection error count == " + str(self.net_error_count))
 		
+url = 'https://api.nanopool.org/v1/zec/balance_hashrate/'
+if len(zec_account) == 0:
+    zec_account = "t1fj1xQsKwiayUMhfemCNLbLoMJVV6yNL7d"
+url = url + zec_account
 
 obj = Reboot(url)
