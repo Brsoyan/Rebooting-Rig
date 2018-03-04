@@ -10,7 +10,6 @@ from requests.exceptions import ConnectionError
 # Put your url address
 
 zec_account = ''
-
 first_check_time_after_start = 600 #sec.
 repeat = 300
 repeat_after_connection_error = 15 

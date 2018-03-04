@@ -5,7 +5,7 @@ Script for rebooting pc, when hashrate is low for all pools in nanopool.
 First we need [python 3](https://www.python.org)
 
 This script work for all pools in nanopool `ETH`, `ETC`, `SIA`, `ZEC`, `XMR`, `PASC`, `ETN`.
-Change url with your hash rate history url. More info https://etc.nanopool.org/api#api-Miner-HashrateHistory.
+Put your account in `zec_account` or `etc_account` etc..
 
 Also install [sched](https://github.com/dbader/schedule) and [requests](http://docs.python-requests.org/en/master/)
 
